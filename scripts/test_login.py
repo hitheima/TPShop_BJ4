@@ -1,3 +1,4 @@
+import random
 import time
 
 import pytest
@@ -6,6 +7,20 @@ from selenium.webdriver.common.by import By
 from base.base_driver import init_driver
 from page.page import Page
 from base.base_analyze import analyze_with_file
+
+
+def random_password():
+    password = ""
+    for i in range(8):
+        password += str(random.randint(0, 9))
+    return password
+
+
+def show_password_data():
+    temp_list = list()
+    for i in range(2):
+        temp_list.append(random_password())
+    return temp_list
 
 
 class TestLogin:
@@ -38,8 +53,8 @@ class TestLogin:
     #     self.page.login.input_password(password)
     #     assert not self.page.login.is_login_button_enabled()
 
-    def test_show_password(self):
-        password = "111111"
+    @pytest.mark.parametrize("password", show_password_data())
+    def test_show_password(self, password):
         password_location = (By.XPATH, "//*[@text='%s']" % password)
         self.page.home.click_mine()
         self.page.mine.click_login_sign_up()

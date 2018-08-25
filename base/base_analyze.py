@@ -3,7 +3,7 @@ import yaml
 
 def analyze_with_file(file_name, case_name):
 
-    with open("./data/" + file_name + ".yml", "r") as f:
+    with open("./data/" + file_name + ".yml", "r", encoding='utf-8') as f:
         res = yaml.load(f)[case_name]
 
         temp_list = list()

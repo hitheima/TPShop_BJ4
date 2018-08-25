@@ -15,6 +15,9 @@ class LoginPage(BaseAction):
     # 登录
     login_button = By.ID, "com.tpshop.malls:id/btn_login"
 
+    # 显示密码
+    view_pwd_button = By.ID, "com.tpshop.malls:id/img_view_pwd"
+
     @allure.step(title="输入用户名")
     def input_username(self, text):
         allure.attach("用户名：", text)
@@ -28,6 +31,10 @@ class LoginPage(BaseAction):
     @allure.step(title="点击登录")
     def click_login(self):
         self.click(self.login_button)
+
+    @allure.step(title="点击显示密码")
+    def click_view_pwd(self):
+        self.click(self.view_pwd_button)
 
     def is_login_button_enabled(self):
         return self.is_location_enabled(self.login_button)

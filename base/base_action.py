@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -38,6 +39,7 @@ class BaseAction:
         element = self.find_element((By.XPATH, message), timeout, 0.1)
         return element.text
 
+    @allure.step(title="判断toast是否存在")
     def is_toast_exist(self, message):
         try:
             self.find_toast(message)
@@ -45,3 +47,8 @@ class BaseAction:
         except Exception:
             return False
 
+    def is_location_enabled(self, location):
+        return self.find_element(location).get_attribute("enabled") == "true"
+
+    def is_location_clickable(self, location):
+        return self.find_element(location).get_attribute("clickable") == "true"

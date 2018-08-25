@@ -18,4 +18,4 @@ def init_driver():
     desired_caps['automationName'] = 'Uiautomator2'
 
     # 声明我们的driver对象
-    return webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+    return webdriver.Remote('http://192.168.22.68:4723/wd/hub', desired_caps)

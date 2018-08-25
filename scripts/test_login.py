@@ -1,7 +1,9 @@
 import random
 import time
 
+import allure
 import pytest
+from allure.constants import AttachmentType
 from selenium.webdriver.common.by import By
 
 from base.base_driver import init_driver
@@ -62,7 +64,19 @@ class TestLogin:
         # 在点击眼睛之前，没有找到输入的密码
         assert not self.page.login.is_location_exist(password_location)
         self.page.login.click_view_pwd()
+
+        # file_page = "./screen/TestLogin-test_show_password-%s.png" % password
+        # # 截图
+        # self.driver.get_screenshot_as_file(file_page)
+
+        # allure.attach("显示密码：", "xxxxxxx", AttachmentType.TEXT)
+
+        time.sleep(2)
+        allure.attach("显示密码：", self.driver.get_screenshot_as_png(), AttachmentType.PNG)
+
         assert self.page.login.is_location_exist(password_location)
+
+
 
 
 

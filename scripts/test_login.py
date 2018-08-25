@@ -14,3 +14,4 @@ class TestLogin:
         self.page.login.input_username("13800138006")
         self.page.login.input_password("123456")
         self.page.login.click_login()
+        assert self.page.login.is_toast_exist("登录成功")

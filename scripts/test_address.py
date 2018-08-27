@@ -25,17 +25,13 @@ class TestAddress:
             self.page.new_address.input_mobile("18500002222")
             self.page.new_address.input_address("5单元203")
             self.page.new_address.click_region()
-
-            # 获取所有的 com.tpshop.malls:id/tv_city
-            # 获取elements的长度
-            # 根据长度生成随机数
-            # 在列表中随机获取一个元素进行点击
-            # 四次后，点击确定
+            # 选择城市
+            self.page.region.click_city()
+            # 选择城市的确定
+            self.page.region.click_commit()
             # 保存收货地址
-
-
-
+            self.page.new_address.click_save_address()
+            assert self.page.address.is_toast_exist("添加成功")
 
         else:
             assert False
-

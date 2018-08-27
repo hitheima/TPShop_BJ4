@@ -13,6 +13,9 @@ class NewAddressPage(BaseAction):
     # 区域
     region_text_view = By.ID, "com.tpshop.malls:id/consignee_region_txtv"
 
+    # 保存收货地址
+    save_address_button = By.ID, "com.tpshop.malls:id/submit_btn"
+
     def click_region(self):
         self.click(self.region_text_view)
 
@@ -24,3 +27,6 @@ class NewAddressPage(BaseAction):
 
     def input_address(self, text):
         self.input(self.address_exit_text, text)
+
+    def click_save_address(self):
+        self.click(self.save_address_button)

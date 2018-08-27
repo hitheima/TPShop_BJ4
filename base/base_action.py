@@ -104,3 +104,22 @@ class BaseAction:
         else:
             raise Exception("请输入正确的参数 up、left、right、down")
 
+    def is_location_exist_scroll_page(self, location, direction="up"):
+
+        old_page_source = None
+        new_page_source = self.driver.page_source
+
+        while True:
+            if self.is_location_exist(location):
+                return True
+            else:
+                if not old_page_source == new_page_source:
+                    self.scroll_page_one_time(direction)
+                    old_page_source = new_page_source
+                    new_page_source = self.driver.page_source
+                else:
+                    return False
+
+
+
+

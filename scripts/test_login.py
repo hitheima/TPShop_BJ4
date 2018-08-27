@@ -76,9 +76,15 @@ class TestLogin:
     #
     #     assert self.page.login.is_location_exist(password_location)
 
-    def test_hello(self):
-        self.page.home.click_mine()
-        print(self.page.mine.is_login())
+
+        # self.page.home.click_mine()
+
+        #
+        # self.driver.keyevent(4)
+        #
+        #
+        #
+        # # print(self.page.mine.is_login())
 
 
 

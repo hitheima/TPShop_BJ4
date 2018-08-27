@@ -24,11 +24,18 @@ class BaseAction:
     def input(self, location, text):
         self.find_element(location).send_keys(text)
 
+    def press_keycode(self, key_code):
+        cap_dict = self.driver.capabilities
+        if cap_dict.get("automationName") == "Uiautomator2":
+            self.driver.press_keycode(key_code)
+        else:
+            self.driver.key_event(key_code)
+
     def press_back(self):
-        self.driver.press_keycode(4)
+        self.press_keycode(4)
 
     def press_enter(self):
-        self.driver.press_keycode(66)
+        self.press_keycode(66)
 
     def find_toast(self, message, timeout=3):
         """
@@ -59,3 +66,41 @@ class BaseAction:
             return True
         except:
             return False
+
+    def scroll_page_one_time(self, direction="up"):
+        """
+        屏幕滑动一次
+        :param direction: 方向
+            up: 从下往上
+            down: 从上往下
+            left: 从右往左
+            right: 从左往右
+        """
+
+        screen_size = self.driver.get_window_size()
+        screen_width = screen_size["width"]
+        screen_height = screen_size["height"]
+
+        center_x = screen_width * 0.5
+        center_y = screen_height * 0.5
+
+        top_x = center_x
+        top_y = screen_height * 0.25
+        down_x = center_x
+        down_y = screen_height * 0.75
+        left_x = screen_width * 0.25
+        left_y = center_y
+        right_x = screen_width * 0.75
+        right_y = center_y
+
+        if direction == "up":
+            self.driver.swipe(down_x, down_y, top_x, top_y, 2000)
+        elif direction == "down":
+            self.driver.swipe(top_x, top_y, down_x, down_y, 2000)
+        elif direction == "left":
+            self.driver.swipe(right_x, right_y, left_x, left_y, 2000)
+        elif direction == "right":
+            self.driver.swipe(left_x, left_y, right_x, right_y, 2000)
+        else:
+            raise Exception("请输入正确的参数 up、left、right、down")
+

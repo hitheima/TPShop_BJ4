@@ -36,5 +36,10 @@ class LoginPage(BaseAction):
     def click_view_pwd(self):
         self.click(self.view_pwd_button)
 
+    def login(self):
+        self.input_username("13800138006")
+        self.input_password("123456")
+        self.click_login()
+
     def is_login_button_enabled(self):
         return self.is_location_enabled(self.login_button)

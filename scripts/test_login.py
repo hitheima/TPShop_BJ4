@@ -55,26 +55,31 @@ class TestLogin:
     #     self.page.login.input_password(password)
     #     assert not self.page.login.is_login_button_enabled()
 
-    @pytest.mark.parametrize("password", show_password_data())
-    def test_show_password(self, password):
-        password_location = (By.XPATH, "//*[@text='%s']" % password)
+    # @pytest.mark.parametrize("password", show_password_data())
+    # def test_show_password(self, password):
+    #     password_location = (By.XPATH, "//*[@text='%s']" % password)
+    #     self.page.home.click_mine()
+    #     self.page.mine.click_login_sign_up()
+    #     self.page.login.input_password(password)
+    #     # 在点击眼睛之前，没有找到输入的密码
+    #     assert not self.page.login.is_location_exist(password_location)
+    #     self.page.login.click_view_pwd()
+    #
+    #     # file_page = "./screen/TestLogin-test_show_password-%s.png" % password
+    #     # # 截图
+    #     # self.driver.get_screenshot_as_file(file_page)
+    #
+    #     # allure.attach("显示密码：", "xxxxxxx", AttachmentType.TEXT)
+    #
+    #     time.sleep(2)
+    #     allure.attach("显示密码：", self.driver.get_screenshot_as_png(), AttachmentType.PNG)
+    #
+    #     assert self.page.login.is_location_exist(password_location)
+
+    def test_hello(self):
         self.page.home.click_mine()
-        self.page.mine.click_login_sign_up()
-        self.page.login.input_password(password)
-        # 在点击眼睛之前，没有找到输入的密码
-        assert not self.page.login.is_location_exist(password_location)
-        self.page.login.click_view_pwd()
+        print(self.page.mine.is_login())
 
-        # file_page = "./screen/TestLogin-test_show_password-%s.png" % password
-        # # 截图
-        # self.driver.get_screenshot_as_file(file_page)
-
-        # allure.attach("显示密码：", "xxxxxxx", AttachmentType.TEXT)
-
-        time.sleep(2)
-        allure.attach("显示密码：", self.driver.get_screenshot_as_png(), AttachmentType.PNG)
-
-        assert self.page.login.is_location_exist(password_location)
 
 
 

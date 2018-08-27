@@ -28,6 +28,8 @@ class MinePage(BaseAction):
         return is_login
 
     def click_address(self):
-        self.click(self.address_button)
+
+        if self.is_location_exist_scroll_page(self.address_button):
+            self.click(self.address_button)
 
 
